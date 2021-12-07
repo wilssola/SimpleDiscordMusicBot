@@ -46,9 +46,8 @@ client.on("interactionCreate", async (interaction) => {
 
   switch (commandName) {
     case "ping":
-      await interaction.reply(
-        "Pong! - " + (Date.now() - interaction.createdTimestamp) + "ms"
-      );
+      let ms = Date.now() - interaction.createdTimestamp;
+      await interaction.reply("Pong! - " + ms + "ms");
       break;
     case "donate":
       await interaction.reply(donateLink);
