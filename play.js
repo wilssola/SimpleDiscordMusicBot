@@ -65,9 +65,7 @@ function play(guild, song) {
     playQueue(guild, serverQueue);
   });
 
-  serverQueue.interaction.deleteReply();
-
-  return serverQueue.interaction.channel.send(
+  return serverQueue.interaction.reply(
     'Começando a tocar o batidão: \n"' + song.title + '"\n' + song.url
   );
 }
