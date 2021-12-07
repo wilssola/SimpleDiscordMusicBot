@@ -112,7 +112,7 @@ function disconnectAFK(guild, serverQueue) {
       if (!serverQueue.playing) {
         destroyQueue(guild, serverQueue);
       }
-    }, 6000);
+    }, 60000);
   //}
 }
 
