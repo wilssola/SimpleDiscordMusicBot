@@ -5,7 +5,7 @@ const queue = require("./const");
 
 function stop(interaction, serverQueue) {
   if (!interaction.member.voice.channel) {
-    return message.editReply(
+    return interaction.editReply(
       "Você precisa estar em um canal de voz para parar o batidão!"
     );
   }

@@ -6,7 +6,7 @@ const queue = require("./const");
 function skip(interaction, serverQueue) {
   if (!interaction.member.voice.channel) {
     return interaction.editReply(
-      "Você precisa estar em um canal de voz para pular o batidão!"
+      "Você precisa estar em um canal de voz para pular um batidão!"
     );
   }
 
