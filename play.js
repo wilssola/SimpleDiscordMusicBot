@@ -15,14 +15,8 @@ function play(guild, song) {
   //console.log("\nserverQueue:", serverQueue);
 
   if (!song) {
-    const connection = getVoiceConnection(guild.id);
-    if (connection) {
-      serverQueue.connection.destroy();
-      console.log("\nConnection destroyed because not has song.");
-    }
-
-    queue.delete(guild.id);
-
+    destroyQueue(guild, serverQueue);
+    
     return;
   }
 
@@ -54,13 +48,7 @@ function play(guild, song) {
 
   serverQueue.player.on(AudioPlayerStatus.AutoPaused, () => {
     if (serverQueue.songs.length <= 0) {
-      const connection = getVoiceConnection(guild.id);
-      if (connection) {
-        serverQueue.connection.destroy();
-        console.log("\nConnection destroyed because not has song.");
-      }
-
-      queue.delete(guild.id);
+      destroyQueue(guild, serverQueue);
     }
 
     playNext(guild, serverQueue);
@@ -68,6 +56,7 @@ function play(guild, song) {
 
   serverQueue.player.on(AudioPlayerStatus.Idle, () => {
     pauseQueue(guild, serverQueue);
+
     playNext(guild, serverQueue);
   });
 
@@ -100,6 +89,16 @@ function playQueue(guild, serverQueue) {
   serverQueue.playing = true;
 
   queue.set(guild.id, serverQueue);
+}
+
+function destroyQueue(guild, serverQueue) {
+  const connection = getVoiceConnection(guild.id);
+  if (connection) {
+    serverQueue.connection.destroy();
+    console.log("\nConnection destroyed because not has song.");
+  }
+
+  queue.delete(guild.id);
 }
 
 module.exports = play;
