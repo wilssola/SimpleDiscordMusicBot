@@ -19,8 +19,10 @@ function skip(interaction, serverQueue) {
     if (serverQueue.songs.length == 1) {
       const connection = getVoiceConnection(interaction.guild.id);
       if (connection) {
-        serverQueue.connection.destroy();
-        console.log("\nConnection destroyed because not has song.");
+        if (serverQueue.connection) {
+          serverQueue.connection.destroy();
+          console.log("\nConnection destroyed because not has song.");
+        }
       }
 
       queue.delete(interaction.guild.id);

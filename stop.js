@@ -16,8 +16,10 @@ function stop(interaction, serverQueue) {
 
   const connection = getVoiceConnection(interaction.guild.id);
   if (connection) {
-    serverQueue.connection.destroy();
-    console.log("\nConnection destroyed because has stopped.");
+    if (serverQueue.connection) {
+      serverQueue.connection.destroy();
+      console.log("\nConnection destroyed because has stopped.");
+    }
   }
 
   queue.delete(interaction.guild.id);

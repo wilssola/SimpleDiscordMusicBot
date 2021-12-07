@@ -101,8 +101,10 @@ function playQueue(guild, serverQueue) {
 function destroyQueue(guild, serverQueue) {
   const connection = getVoiceConnection(guild.id);
   if (connection) {
-    serverQueue.connection.destroy();
-    console.log("\nConnection destroyed because not has song.");
+    if (serverQueue.connection) {
+      serverQueue.connection.destroy();
+      console.log("\nConnection destroyed because not has song.");
+    }
   }
 
   queue.delete(guild.id);
