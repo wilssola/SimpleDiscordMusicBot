@@ -2,7 +2,7 @@ const { Client, Intents } = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 
-const { clientId, token, donateLink } = require("./config.json");
+const { clientId, token, donateLink, flybisLink } = require("./config.json");
 
 const queue = require("./const");
 const commands = require("./commands");
@@ -51,10 +51,10 @@ client.on("interactionCreate", async (interaction) => {
       );
       break;
     case "donate":
-      await interaction.reply("https://flybis.net");
+      await interaction.reply(donateLink);
       break;
     case "flybis":
-      await interaction.reply(donateLink);
+      await interaction.reply(flybisLink);
       break;
     case "play":
       await interaction.deferReply();
