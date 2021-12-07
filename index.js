@@ -47,7 +47,7 @@ client.on("interactionCreate", async (interaction) => {
   switch (commandName) {
     case "ping":
       await interaction.reply(
-        "Pong! - " + Date.now() - interaction.createdTimestamp + "ms"
+        "Pong! - " + (Date.now() - interaction.createdTimestamp) + "ms"
       );
       break;
     case "flybis":
