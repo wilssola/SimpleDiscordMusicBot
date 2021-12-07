@@ -2,7 +2,7 @@ const { Client, Intents } = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 
-const { clientId, token } = require("./config.json");
+const { clientId, token, donateLink } = require("./config.json");
 
 const queue = require("./const");
 const commands = require("./commands");
@@ -54,7 +54,7 @@ client.on("interactionCreate", async (interaction) => {
       await interaction.reply("https://flybis.net");
       break;
     case "flybis":
-      await interaction.reply("https://www.paypal.com/donate/?hosted_button_id=EJSWWCC5CEQDY");
+      await interaction.reply(donateLink);
       break;
     case "play":
       await interaction.deferReply();
