@@ -50,8 +50,11 @@ client.on("interactionCreate", async (interaction) => {
         "Pong! - " + (Date.now() - interaction.createdTimestamp) + "ms"
       );
       break;
-    case "flybis":
+    case "donate":
       await interaction.reply("https://flybis.net");
+      break;
+    case "flybis":
+      await interaction.reply("https://www.paypal.com/donate/?hosted_button_id=EJSWWCC5CEQDY");
       break;
     case "play":
       await interaction.deferReply();

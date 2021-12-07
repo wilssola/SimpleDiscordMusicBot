@@ -3,6 +3,9 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const commands = [
   new SlashCommandBuilder().setName("ping").setDescription("Retorna um pong!"),
   new SlashCommandBuilder()
+    .setName("donate")
+    .setDescription("Retorna o link para donate do batidão!"),
+  new SlashCommandBuilder()
     .setName("flybis")
     .setDescription("Retorna o flybis!"),
   new SlashCommandBuilder()
