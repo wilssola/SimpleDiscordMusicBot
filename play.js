@@ -107,13 +107,13 @@ function destroyQueue(guild, serverQueue) {
 }
 
 function disconnectAFK(guild, serverQueue) {
-  if (serverQueue.songs.length <= 0) {
+  //if (serverQueue.songs.length <= 0) {
     setTimeout(() => {
       if (!serverQueue.playing) {
         destroyQueue(guild, serverQueue);
       }
     }, 6000);
-  }
+  //}
 }
 
 module.exports = play;
