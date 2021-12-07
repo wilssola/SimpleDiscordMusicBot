@@ -82,7 +82,9 @@ async function execute(interaction, serverQueue) {
     try {
       joinChannel(voiceChannel, queueContruct);
 
-      return play(interaction.guild, song);
+      play(interaction.guild, song);
+
+      return interaction.deleteReply();
     } catch (err) {
       console.log(err);
 
