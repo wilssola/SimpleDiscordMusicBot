@@ -63,6 +63,8 @@ function play(guild, song) {
   });
 
   serverQueue.player.on(AudioPlayerStatus.Playing, () => {
+    connectAFK(guild, serverQueue);
+
     playQueue(guild, serverQueue);
   });
 
@@ -107,13 +109,21 @@ function destroyQueue(guild, serverQueue) {
 }
 
 function disconnectAFK(guild, serverQueue) {
-  //if (serverQueue.songs.length <= 0) {
-    setTimeout(() => {
-      if (!serverQueue.playing) {
-        destroyQueue(guild, serverQueue);
-      }
-    }, 60000);
-  //}
+  serverQueue.disconnect = setTimeout(() => {
+    if (!serverQueue.playing) {
+      destroyQueue(guild, serverQueue);
+    }
+  }, 60000);
+
+  queue.set(guild.id, serverQueue);
+}
+
+function connectAFK(guild, serverQueue) {
+  if (serverQueue.disconnect) {
+    clearTimeout(serverQueue.disconnect);
+
+    queue.set(guild.id, serverQueue);
+  }
 }
 
 module.exports = play;

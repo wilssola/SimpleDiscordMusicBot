@@ -70,6 +70,7 @@ async function execute(interaction, serverQueue) {
       voiceChannel: voiceChannel,
       interaction: interaction,
       connection: null,
+      disconnect: null,
       player: createAudioPlayer({
         behaviors: {
           noSubscriber: NoSubscriberBehavior.Pause,
