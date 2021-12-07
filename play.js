@@ -48,8 +48,14 @@ function play(guild, song) {
 
   serverQueue.player.on(AudioPlayerStatus.AutoPaused, () => {
     if (serverQueue.songs.length <= 0) {
-      destroyQueue(guild, serverQueue);
+      setTimeout(() => {
+        if (!serverQueue.playing) {
+          destroyQueue(guild, serverQueue);
+        }
+      }, 6000);
     }
+
+    pauseQueue(guild, serverQueue);
 
     playNext(guild, serverQueue);
   });
