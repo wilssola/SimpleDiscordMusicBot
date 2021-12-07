@@ -47,7 +47,7 @@ function play(guild, song) {
   });
 
   serverQueue.player.on(AudioPlayerStatus.AutoPaused, () => {
-    if (serverQueue.songs.length <= 0) {
+    if (serverQueue.songs.length <= 1) {
       destroyQueue(guild, serverQueue);
     }
 
