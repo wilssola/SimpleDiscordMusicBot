@@ -61,6 +61,10 @@ function play(guild, song) {
     playNext(guild, serverQueue);
   });
 
+  serverQueue.player.on(AudioPlayerStatus.Playing, () => {
+    playQueue(guild, serverQueue);
+  });
+
   return serverQueue.interaction.editReply(
     'Começando a tocar o batidão: \n"' + song.title + '"\n' + song.url
   );
@@ -78,6 +82,12 @@ function playNext(guild, serverQueue) {
 
 function pauseQueue(guild, serverQueue) {
   serverQueue.playing = false;
+
+  queue.set(guild.id, serverQueue);
+}
+
+function playQueue(guild, serverQueue) {
+  serverQueue.playing = true;
 
   queue.set(guild.id, serverQueue);
 }
