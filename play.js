@@ -53,6 +53,16 @@ function play(guild, song) {
   });
 
   serverQueue.player.on(AudioPlayerStatus.AutoPaused, () => {
+    if (serverQueue.songs.length <= 0) {
+      const connection = getVoiceConnection(guild.id);
+      if (connection) {
+        serverQueue.connection.destroy();
+        console.log("\nConnection destroyed because not has song.");
+      }
+
+      queue.delete(guild.id);
+    }
+
     playNext(guild, serverQueue);
   });
 
