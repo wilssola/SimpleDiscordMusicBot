@@ -47,21 +47,21 @@ function play(guild, song) {
   });
 
   serverQueue.player.on(AudioPlayerStatus.AutoPaused, () => {
+    playNext(guild, serverQueue);
+    
     if (serverQueue.songs.length <= 0) {
       destroyQueue(guild, serverQueue);
     }
-
-    playNext(guild, serverQueue);
   });
 
   serverQueue.player.on(AudioPlayerStatus.Idle, () => {
-    if (serverQueue.songs.length <= 0) {
-      destroyQueue(guild, serverQueue);
-    }
-
     pauseQueue(guild, serverQueue);
 
     playNext(guild, serverQueue);
+
+    if (serverQueue.songs.length <= 0) {
+      destroyQueue(guild, serverQueue);
+    }
   });
 
   serverQueue.player.on(AudioPlayerStatus.Playing, () => {
