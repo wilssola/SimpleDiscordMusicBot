@@ -76,7 +76,6 @@ async function execute(interaction, serverQueue) {
         },
       }),
       songs: [],
-      volume: 5,
       playing: true,
     };
 
