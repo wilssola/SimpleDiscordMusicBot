@@ -30,7 +30,7 @@ function play(guild, song) {
 
   serverQueue.connection.on("stateChange", (oldState, newState) => {
     console.log(
-      `\nConnection transitioned from ${oldState.status} to ${newState.status}`
+      `\nConnection transitioned from ${oldState.status} to ${newState.status}.`
     );
   });
 
@@ -48,7 +48,7 @@ function play(guild, song) {
 
   serverQueue.player.on("stateChange", (oldState, newState) => {
     console.log(
-      `\nPlayer transitioned from ${oldState.status} to ${newState.status}`
+      `\nPlayer transitioned from ${oldState.status} to ${newState.status}.`
     );
   });
 
