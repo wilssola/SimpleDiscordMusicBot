@@ -16,7 +16,7 @@ function play(guild, song) {
 
   if (!song) {
     destroyQueue(guild, serverQueue);
-    
+
     return;
   }
 
@@ -72,8 +72,9 @@ function play(guild, song) {
 function playNext(guild, serverQueue) {
   if (serverQueue && serverQueue.songs && serverQueue.songs.length > 1) {
     const song = serverQueue.songs[1];
-    serverQueue.songs.shift();
     //console.log("\nplayNext", song);
+
+    serverQueue.songs.shift();
 
     play(guild, song);
   }
