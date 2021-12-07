@@ -47,21 +47,17 @@ function play(guild, song) {
   });
 
   serverQueue.player.on(AudioPlayerStatus.AutoPaused, () => {
-    playNext(guild, serverQueue);
-    
     if (serverQueue.songs.length <= 0) {
       destroyQueue(guild, serverQueue);
     }
+
+    playNext(guild, serverQueue);
   });
 
   serverQueue.player.on(AudioPlayerStatus.Idle, () => {
     pauseQueue(guild, serverQueue);
 
     playNext(guild, serverQueue);
-
-    if (serverQueue.songs.length <= 0) {
-      destroyQueue(guild, serverQueue);
-    }
   });
 
   serverQueue.player.on(AudioPlayerStatus.Playing, () => {
@@ -74,13 +70,15 @@ function play(guild, song) {
 }
 
 function playNext(guild, serverQueue) {
-  if (serverQueue && serverQueue.songs && serverQueue.songs.length > 0) {
-    serverQueue.songs.shift();
+  if (serverQueue && serverQueue.songs) {
+    if (serverQueue.songs.length > 0) {
+      serverQueue.songs.shift();
 
-    const song = serverQueue.songs[0];
-    //console.log("\nplayNext", song);
+      const song = serverQueue.songs[0];
+      //console.log("\nplayNext", song);
 
-    play(guild, song);
+      play(guild, song);
+    }
   }
 }
 
