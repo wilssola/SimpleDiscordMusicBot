@@ -71,11 +71,11 @@ function play(guild, song) {
 
 function playNext(guild, serverQueue) {
   if (serverQueue && serverQueue.songs) {
-    if (serverQueue.songs.length > 0) {
-      serverQueue.songs.shift();
-
-      const song = serverQueue.songs[0];
+    if (serverQueue.songs.length > 1) {
+      const song = serverQueue.songs[1];
       //console.log("\nplayNext", song);
+
+      serverQueue.songs.shift();
 
       play(guild, song);
     }
