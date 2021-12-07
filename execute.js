@@ -42,7 +42,12 @@ async function execute(interaction, serverQueue) {
     console.log("\nsong:", song);
   } catch {
     try {
-      const videoSearch = await ytsr(search);
+      const filters = await ytsr.getFilters(search);
+      const filter = filters.get("Type").get("Video");
+
+      const videoSearch = await ytsr(filter.url, {
+        limit: 1,
+      });
       song = {
         title: videoSearch.items[0].title,
         url: videoSearch.items[0].url,
