@@ -136,4 +136,4 @@ dist
 
 # WolfTheZelda
 .autogit/
-config.json
+#config.json
